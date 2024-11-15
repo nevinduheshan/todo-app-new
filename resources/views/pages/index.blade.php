@@ -15,12 +15,12 @@
                         </a>
                     </div>
 
-                    <form method="GET" action="">
+                    <form method="GET" action=" {{ Route('tasks.index') }}">
                         <select name="status" onchange="this.form.submit()">
                             <option value="">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value ="In Progress">In Progress</option>
-                            <option value="Completed">Completed</option>
+                            <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                            <option value ="In Progress" {{ request('status') == 'In progress' ? 'selected' : '' }}>In Progress</option>
+                            <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
                         </select>
                     </form>
 
