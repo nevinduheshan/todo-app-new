@@ -36,16 +36,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($tasks as $task)
                             <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                 <th scope="row" class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple iMac 27&#34;
+                                    {{ $task->title }}
                                 </th>
                                 <td class="px-4 py-2">
-                                    Apple iMac 27&#34;
+                                    {{ $task->description }}
                                 </td>
                                 <td class="px-4 py-2">
-                                    <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">Desktop PC</span>
+                                    <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{{ $task->status }}</span>
                                 </td>
 
                                 <td class=" py-2">
@@ -53,6 +54,8 @@
                                     <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="submit">Delete</button>
                                 </td>
                             </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>

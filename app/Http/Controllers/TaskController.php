@@ -10,9 +10,13 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.index');
+        $status = $request->get('status');
+        $tasks = Task::when($status, function ($query) use ($status){
+            return $query->where('status', $status);
+        })->get();
+        return view('pages.index', compact('tasks','status'));
     }
 
     /**
@@ -36,7 +40,7 @@ class TaskController extends Controller
 
         Task::create($request->all());
 
-        return redirect()->back()->with('success', 'Task created successfully');
+        return redirect(Route('tasks.index'))->with('success', 'Task created successfully');
     }
 
     /**
