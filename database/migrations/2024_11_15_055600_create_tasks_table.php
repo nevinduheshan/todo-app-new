@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('statis',['Pending','In Progress', 'Completed'])->default('Pending');
+            $table->enum('status',['Pending','In Progress', 'Completed'])->default('Pending');
             $table->timestamps();
         });
     }
