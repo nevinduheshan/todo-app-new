@@ -54,17 +54,25 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        //
+        return view('pages.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required|nullable|String',
+            'status' => 'required|in:Pending,In Progress,Completed',
+        ]);
+
+        $task->update($request->all());
+
+        return redirect(Route('tasks.index'))->with('success', 'Task updated successfully');
     }
 
     /**
