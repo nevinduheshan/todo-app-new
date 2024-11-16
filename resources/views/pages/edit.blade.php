@@ -1,5 +1,5 @@
 <x-layout>
-    <h1>Edit Task</h1>
+    <h1 class="text-4xl font-extrabold dark:text-white">Edit Task</h1>
 
     <form method="POST" action="{{ Route('tasks.update', $task) }}" class="max-w-sm mx-auto">
         @csrf

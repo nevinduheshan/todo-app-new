@@ -1,8 +1,8 @@
 <x-layout>
 
     <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
-        <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
-            <h1>Tasks</h1>
+        <div class="px-4 mx-auto     max-w-screen-2xl lg:px-12">
+            <h1 class="text-4xl font-extrabold dark:text-white">Tasks</h1>
             <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
                 <div
                     class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
@@ -21,7 +21,9 @@
                     </div>
 
                     <form method="GET" action=" {{ Route('tasks.index') }}">
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="status" onchange="this.form.submit()">
+                        <select
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="status" onchange="this.form.submit()">
                             <option value="">All</option>
                             <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending
                             </option>
@@ -51,8 +53,11 @@
 
                                     <th scope="row"
                                         class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $task->title }}
+                                        <a href="{{ Route('tasks.show', $task) }}">
+                                            <h1 class="text-2xl"><u>{{ $task->title }}</u></h1>
+                                        </a>
                                     </th>
+
                                     <td class="px-4 py-2">
                                         {{ $task->description }}
                                     </td>
@@ -85,10 +90,12 @@
                     </table>
                 </div>
 
-                <div class="mt-4 flex justify-between items-center p-4 space-y-3 md:flex-row md:items-center md:space-y-0">
+                <div
+                    class="mt-4 flex justify-between items-center p-4 space-y-3 md:flex-row md:items-center md:space-y-0">
                     <div>
                         <span class="text-gray-600 text-sm">
-                            Showing {{ $tasks->firstItem() }} to {{ $tasks->lastItem() }} of {{ $tasks->total() }} tasks
+                            Showing {{ $tasks->firstItem() }} to {{ $tasks->lastItem() }} of {{ $tasks->total() }}
+                            tasks
                         </span>
                     </div>
 
