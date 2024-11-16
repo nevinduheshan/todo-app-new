@@ -16,7 +16,7 @@ class TaskController extends Controller
         $status = $request->get('status');
         $tasks = Task::when($status, function ($query) use ($status){
             return $query->where('status', $status);
-        })->get();
+        })->paginate(5);
         // dd($tasks);
         return view('pages.index', compact('tasks','status'));
     }
