@@ -3,6 +3,8 @@
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+// Redirect root URL to /tasks
 Route::redirect('/', '/tasks');
+
+// Resource route for tasks
 Route::resource('tasks', TaskController::class);
