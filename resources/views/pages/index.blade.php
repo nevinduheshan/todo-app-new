@@ -21,7 +21,7 @@
                     </div>
 
                     <form method="GET" action=" {{ Route('tasks.index') }}">
-                        <select name="status" onchange="this.form.submit()">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="status" onchange="this.form.submit()">
                             <option value="">All</option>
                             <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending
                             </option>
@@ -41,6 +41,8 @@
                                 <th scope="col" class="px-4 py-3">Title</th>
                                 <th scope="col" class="px-4 py-3">Description</th>
                                 <th scope="col" class="px-4 py-3">Status</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
