@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -16,6 +17,7 @@ class TaskController extends Controller
         $tasks = Task::when($status, function ($query) use ($status){
             return $query->where('status', $status);
         })->get();
+        // dd($tasks);
         return view('pages.index', compact('tasks','status'));
     }
 
@@ -78,8 +80,14 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
+
+
+        // DD($task);
+
+        $task->delete();
+
+        return redirect(Route('tasks.index'))->with('success', 'Task deleted successfully');
     }
 }
