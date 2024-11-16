@@ -107,6 +107,7 @@
         </div>
     </section>
 
+    {{-- Delete Task Confirmation popup --}}
     <script>
         function confirmDelete(taskId) {
             swal({

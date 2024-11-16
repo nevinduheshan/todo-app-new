@@ -13,9 +13,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->get('status');
+        $status = $request->get('status'); // get the status from the request
         $tasks = Task::when($status, function ($query) use ($status){
-            return $query->where('status', $status);
+            return $query->where('status', $status); // filter the tasks based on the status
         })->paginate(5);
         // dd($tasks);
         return view('pages.index', compact('tasks','status'));
@@ -34,15 +34,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // validate the request
         $request->validate([
             'title' => 'required',
             'description' => 'required|nullable|String',
             'status' => 'required|in:Pending,In Progress,Completed',
         ]);
 
-        Task::create($request->all());
-        toastr()->closeButton()->timeOut(3000)->success('Task created successfully');
-        return redirect(Route('tasks.index'));
+        Task::create($request->all()); // create the task
+        toastr()->closeButton()->timeOut(3000)->success('Task created successfully'); // success message
+        return redirect(Route('tasks.index')); // redirect to the index page
     }
 
     /**
