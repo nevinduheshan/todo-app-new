@@ -41,8 +41,8 @@ class TaskController extends Controller
         ]);
 
         Task::create($request->all());
-
-        return redirect(Route('tasks.index'))->with('success', 'Task created successfully');
+        toastr()->closeButton()->timeOut(3000)->success('Task created successfully');
+        return redirect(Route('tasks.index'));
     }
 
     /**
@@ -73,8 +73,8 @@ class TaskController extends Controller
         ]);
 
         $task->update($request->all());
-
-        return redirect(Route('tasks.index'))->with('success', 'Task updated successfully');
+        toastr()->closeButton()->timeOut(3000)->success('Task Updated successfully');
+        return redirect(Route('tasks.index'));
     }
 
     /**
@@ -82,12 +82,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-
-
         // DD($task);
-
         $task->delete();
-
-        return redirect(Route('tasks.index'))->with('success', 'Task deleted successfully');
+        toastr()->closeButton()->timeOut(3000)->warning('Task deleted successfully');
+        return redirect(Route('tasks.index'));
     }
 }
